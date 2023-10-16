@@ -1,0 +1,106 @@
+<!DOCTYPE html> 
+<htm> 
+    <head lang="es"> 
+        <meta charset="utf-8"> 
+        <script src="jquery.js"></script> 
+        <script> 
+            //coordenadas primer cubo 
+            x1 = 220; 
+            y1 = 220; 
+            //coordernadas segundo cubo 
+            x2 = 255;
+            y2 = 220;  
+            //coordenadas tercer cubo 
+            x3 = 255; 
+            y3 = 255; 
+            //coordernadas cuarto cubo 
+            x4 = 220;
+            y4 = 255; 
+
+
+
+            $(document).ready(inicio); 
+
+            function inicio(){ 
+                dibujar();
+            }  
+
+            function dibujar(){ 
+                var canvas = document.getElementById("canvas1"); 
+                var contexto = canvas.getContext("2d"); 
+                contexto.clearRect(0,0,500,500);
+            //dibujar las líneas que intersectan al canvas 
+                contexto.fillStyle = "blue";  
+                //línea horizontal
+                contexto.moveTo(250,0); 
+                contexto.lineTo(250,500);  
+                //línea vertical 
+                contexto.moveTo(0,250); 
+                contexto.lineTo(500, 250);  
+                //estableciendo las líneas dentro del canvas 
+                contexto.stroke(); 
+
+            //animación de los rectangulos  
+                 
+                contexto.fillStyle = "red";
+                contexto.fillRect(x1,y1,25,25);   
+                if((x1 > 2 && x1 <= 220) && (y1 > 2 && y1 <= 220)){ 
+                    x1 = x1 +(Math.round(Math.random()*10)-5); 
+                    y1 = y1 +(Math.round(Math.random()*10)-5);
+                }else{ 
+                    x1 = 220;  
+                    y1 = 220;
+                }
+
+                contexto.fillStyle = "pink";
+                contexto.fillRect(x2,y2,25,25);  
+                if((x2 >= 255 && x2 <= 473) && (y2 > 2 && y2 <= 220)){ 
+                    x2 = x2 +(Math.round(Math.random()*10)-5); 
+                    y2 = y2 +(Math.round(Math.random()*10)-5);
+                }else{ 
+                    x2 = 255; 
+                    y2 = 220; 
+                }  
+
+                contexto.fillStyle = "green";
+                contexto.fillRect(x3,y3,25,25);  
+                if((x3 >=255 && x3 <= 473) && (y3 >= 255 && y3 <= 473)){ 
+                    x3 = x3 +(Math.round(Math.random()*10)-5); 
+                    y3 = y3 +(Math.round(Math.random()*10)-5);
+                }else{ 
+                    x3 = 255;
+                    y3 = 255;
+                }
+
+                contexto.fillStyle = "orange";
+                contexto.fillRect(x4,y4,25,25); 
+                if((x4 > 2 && x4 <= 220) && (y4 >= 255 && y4 <= 473)){ 
+                    x4 = x4 +(Math.round(Math.random()*10)-5); 
+                    y4 = y4 +(Math.round(Math.random()*10)-5);
+                }else{ 
+                    x4 = 220; 
+                    y4 = 255;
+                }
+                
+                setTimeout("dibujar()", 1000);
+            }
+
+        </script> 
+
+        <style>  
+            .wrapper{ 
+                text-align: center;
+            }
+            canvas{ 
+                border: 1px solid black;
+            }
+        </style>
+    </head> 
+    <body> 
+        <div class="wrapper">  
+            <h1>Ejercicio animación dos</h1>
+            <canvas id="canvas1" height="500px" width="500px"></canvas>
+        </div> 
+        
+    </body>
+</htm>
