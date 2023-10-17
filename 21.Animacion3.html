@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="es">
+    <meta charset="utf-8">
+
+    <script src="jquery.js"></script>
+    <script>
+        //coordenadas de inicio 
+        dict = {
+            "cubo1": [
+                //coordenadas primer cubo 
+                x1 = 0,
+                y1 = 25,
+                b = true
+            ],
+            "cubo2": [
+                //coordernadas segundo cubo 
+                x2 = 0,
+                y2 = 75,
+                b = true
+            ],
+            "cubo3": [
+                //coordenadas tercer cubo 
+                x3 = 0,
+                y3 = 125,
+                b = true
+            ],
+            "cubo4": [
+                //coordernadas cuarto cubo 
+                x4 = 0,
+                y4 = 175,
+                b = true
+            ],
+            "cubo5": [
+                //coordenadas quinto cubo 
+                x5 = 0,
+                y5 = 225,
+                b = true
+            ]
+        }
+
+        counter = 1;
+
+        $(document).ready(inicio);
+        function inicio() {
+            dibujar();
+        }
+
+        function animar(contexto, cubo) {
+            contexto.fillRect(dict[cubo][0], dict[cubo][1], 25, 25)
+            if (dict[cubo][0] < 475) {
+                dict[cubo][0] = dict[cubo][0] + (Math.round(Math.random() * 10))
+            }else{ 
+                if(dict[cubo][2]){ 
+                    alert(cubo + "\nPosición: #"+counter) 
+                    dict[cubo][2] = false 
+                    counter+=1
+                }
+            }
+        }
+
+        function dibujar() {
+            var canvas = document.getElementById("canvas1");
+            var contexto = canvas.getContext("2d");
+            contexto.clearRect(0, 0, 500, 250); 
+            contexto.strokeStyle = "white";
+            contexto.setLineDash([5,10]) 
+            
+            contexto.moveTo(0, 20);
+            contexto.lineTo(500, 20);  
+
+            contexto.moveTo(0, 62);
+            contexto.lineTo(500, 62); 
+            
+            contexto.moveTo(0, 112);
+            contexto.lineTo(500, 112); 
+              
+            contexto.moveTo(0, 162);
+            contexto.lineTo(500, 162);  
+
+            contexto.moveTo(0, 212);
+            contexto.lineTo(500, 212);  
+
+            contexto.moveTo(0, 255);
+            contexto.lineTo(500, 255);
+
+            contexto.stroke(); 
+
+            contexto.fillStyle = "blue";
+            animar(contexto, "cubo1");  
+
+            contexto.fillStyle = "red";
+            contexto.fillRect(dict["cubo2"][0], dict["cubo2"][1], 25, 25)
+            animar(contexto, "cubo2");
+
+
+            contexto.fillStyle = "green";
+            contexto.fillRect(dict["cubo3"][0], dict["cubo3"][1], 25, 25)
+            animar(contexto, "cubo3");
+
+
+            contexto.fillStyle = "pink";
+            contexto.fillRect(dict["cubo4"][0], dict["cubo4"][1], 25, 25)
+            animar(contexto, "cubo4");
+
+
+            contexto.fillStyle = "yellow";
+            contexto.fillRect(dict["cubo5"][0], dict["cubo5"][1], 25, 25)
+            animar(contexto, "cubo5");
+
+
+            setTimeout("dibujar()", 100)
+
+        }
+
+
+    </script>
+
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-image: url(bbg.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+
+        }
+
+        .wrapper {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: red;
+
+        }
+
+        canvas {
+            background-color: rgb(86, 83, 83);
+            border: 2px solid rgb(116, 110, 110);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Animación 3</h1>
+        <canvas id="canvas1" height="270px" width="500px"></canvas>
+    </div>
+
+</body>
+
+</html>
